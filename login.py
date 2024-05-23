@@ -17,7 +17,7 @@ CLIENT_ID = st.secrets.CLIENT_ID  # Reemplaza con tu Application (client) ID
 CLIENT_SECRET = st.secrets.CLIENT_SECRET
 TENANT_ID = st.secrets.TENANT_ID
 AUTHORITY = f'https://login.microsoftonline.com/{TENANT_ID}'
-REDIRECT_PATH = '/'
+REDIRECT_PATH = ''
 SCOPE = ['User.Read']
 
 # Creación de un objeto de aplicación
