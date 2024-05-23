@@ -35,6 +35,8 @@ def get_user_profile(access_token):
     response = requests.get('https://graph.microsoft.com/v1.0/me', headers=headers)
     return response.json()
 
+def get_logout_url():
+    return f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/logout?post_logout_redirect_uri=https://cafversionfinalgit-cb8cein65fjssb9hafhnhv.streamlit.app/'
 # Manejo de la autenticación en Streamlit
 if 'token' not in st.session_state:
     st.session_state["token"] = None
@@ -44,6 +46,11 @@ if st.session_state.token:
     
     st.write(f"Bienvenido, {user_profile.get('displayName')}")
     st.write(f"Correo electrónico: {user_profile.get('mail')}")
+    if st.button("Cerrar sesión"):
+        st.session_state["token"] = None
+        logout_url = get_logout_url()
+        st.markdown(f"[Cerrar sesión con Azure AD]({logout_url})")
+        st.stop()
     
     
     # Configuración del client
