@@ -1,0 +1,39 @@
+.promptflow/eval/flow.detail.json
+.promptflow/eval/flow.log
+.vscode/launch.json
+__pycache__/consulta_prompt_flow.cpython-38.pyc
+__pycache__/consulta_prompt_flow.cpython-39.pyc
+__pycache__/run_indexer.cpython-38.pyc
+__pycache__/run_indexer.cpython-39.pyc
+__pycache__/test_eval.cpython-38.pyc
+__pycache__/test_eval.cpython-39.pyc
+__pycache__/utils.cpython-38.pyc
+TRASH/2016 - KfW USD 155.8MM Prolongación plazo de desembolso.pdf.pdf
+TRASH/2017 - KfW USD 131.4MM Contrato.pdf
+TRASH/2020 - KfW USD 115.6MM Contrato.pdf.pdf
+TRASH/app_mockup_ORIGINAL.py
+TRASH/app.py
+TRASH/data.json
+TRASH/app_mockup.py
+TRASH/data.jsonl
+TRASH/datos2.json
+TRASH/eval.prompty
+TRASH/json_mockup.json
+TRASH/main_test_refresh.py
+TRASH/prompt_viejo_eval.prompt
+TRASH/prueba.py
+TRASH/prueba2.py
+TRASH/sample.json
+TRASH/test_eval.py
+TRASH/utils.py
+datos.txt
+secrets.toml
+__pycache__/consulta_prompt_flow.cpython-311.pyc
+__pycache__/run_indexer.cpython-311.pyc
+.streamlit/config.toml
+.devcontainer/devcontainer.json
+CostosAzure.xlsx
+caf.md
+CAF.drawio
+.$CAF.drawio.dtmp
+.$CAF.drawio.bkp
