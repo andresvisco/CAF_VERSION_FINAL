@@ -25,7 +25,7 @@ msal_app = msal.ConfidentialClientApplication(
     CLIENT_ID, authority=AUTHORITY, client_credential=CLIENT_SECRET)
 
 def get_auth_url():
-    return msal_app.get_authorization_request_url(SCOPE, redirect_uri=f"https://cafversionfinalgit-cb8cein65fjssb9hafhnhv.streamlit.app/{REDIRECT_PATH}")
+    return msal_app.get_authorization_request_url(SCOPE, redirect_uri=f"https://cafversionfinal-vhfxurfzjix57nxrsngsqw.streamlit.app/{REDIRECT_PATH}")
 
 def get_token_from_code(auth_code):
     return msal_app.acquire_token_by_authorization_code(auth_code, scopes=SCOPE, redirect_uri=f"https://cafversionfinalgit-cb8cein65fjssb9hafhnhv.streamlit.app/{REDIRECT_PATH}")
