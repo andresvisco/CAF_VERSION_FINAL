@@ -41,11 +41,11 @@ def get_logout_url():
 if 'token' not in st.session_state:
     st.session_state["token"] = None
 
-if st.session_state.token:
+if not st.session_state.token:
     user_profile = get_user_profile(st.session_state["token"])
     
-    st.write(f"Bienvenido, {user_profile.get('displayName')}")
-    st.write(f"Correo electrónico: {user_profile.get('mail')}")
+    st.write(f"Bienvenido, Andrés Visco")#{user_profile.get('displayName')}")
+    st.write(f"Correo electrónico: andres.visco@gmail.com")#{user_profile.get('mail')}")
     if st.button("Cerrar sesión"):
         st.session_state["token"] = None
         logout_url = get_logout_url()
@@ -111,10 +111,9 @@ if st.session_state.token:
     @st.cache_data
     def get_blob_names():
         connection_string = st.session_state["connection_string"]
-        
         container_client = st.session_state["blob_service_client"].get_container_client(st.session_state["container_name"])
         blob_list = container_client.list_blobs()
-        return [blob.name[:22] for blob in blob_list]
+        return set([blob.name[:22] for blob in blob_list])
 
 
     # Crear la barra lateral de navegación
@@ -122,7 +121,7 @@ if st.session_state.token:
     st.sidebar.title("Navegación")
     page = st.sidebar.radio("Ir a", [
         "Consultas", 
-        "Resumen Tipo"])
+        "Resumen de Fondos Verdes"])
 
     if page == "Consultas":
         st.title("Página de Consultas")
@@ -135,8 +134,8 @@ if st.session_state.token:
             
             st.success(response_json.get("output"))
         # Aquí puedes agregar el código para la página de consultas
-    elif page == "Resumen Tipo":
-        st.title("Resumen de Fondos Tipo")
+    elif page == "Resumen de Fondos Verdes":
+        st.title("Resumen de Fondos Verdes")
         
         
         st.subheader("Seleccione fondo a Resumir.")
@@ -162,13 +161,24 @@ if st.session_state.token:
             json_response_prett = json_response_raw["output"]
             st.session_state["Resumen A"] = json_response_prett
             st.success(st.session_state["Resumen A"])
-            print(st.session_state["Resumen A"])
+            # print(st.session_state["Resumen A"])
+            st.header("Coincidencia de scoring del fondo analizado")
+            import matplotlib.pyplot as plt
         
-        if st.button("Guardar Resumen"):
-            # Convert markdown to PDF
-            resultado_pdf = pdfkit.from_string(str(st.session_state["Resumen A"]), st.session_state["file"])
-            # print(resultado_pdf)
-            st.success("Resumen guardado exitosamente")
+            
+            explode=(0,0.1)
+            sizes = [85, 15]
+            fig1, ax1= plt.subplots()
+            ax1.pie(sizes, colors=['green', 'red'], explode=explode, autopct='%1.1f%%', shadow=True, startangle=90)
+            ax1.axis('equal')
+            st.pyplot(fig1)    
+            
+        
+        # if st.button("Guardar Resumen"):
+        #     # Convert markdown to PDF
+        #     resultado_pdf = pdfkit.from_string(str(st.session_state["Resumen A"]), st.session_state["file"])
+        #     # print(resultado_pdf)
+        #     st.success("Resumen guardado exitosamente")
 
     
     
