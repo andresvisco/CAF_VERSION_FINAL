@@ -17,7 +17,7 @@ class PromptFlowClient:
 
         url = self.endpoint_url
         
-        api_key = st.secrets.consultas.api_key
+        api_key = os.environ["api_key_consultas"]
         if not api_key:
             raise Exception("A key should be provided to invoke the endpoint")
 

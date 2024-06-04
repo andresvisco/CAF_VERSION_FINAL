@@ -13,9 +13,9 @@ import msal
 import requests
 
 # Configuración de Azure AD
-CLIENT_ID = st.secrets.CLIENT_ID  # Reemplaza con tu Application (client) ID
-CLIENT_SECRET = st.secrets.CLIENT_SECRET
-TENANT_ID = st.secrets.TENANT_ID
+CLIENT_ID = os.environ["CLIENT_ID"]  # Reemplaza con tu Application (client) ID
+CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+TENANT_ID = os.environ["TENANT_ID"]
 AUTHORITY = f'https://login.microsoftonline.com/{TENANT_ID}'
 REDIRECT_PATH = ''
 SCOPE = ['User.Read']
@@ -60,7 +60,7 @@ if not st.session_state.token:
     if "file" not in st.session_state:
         st.session_state["file"] = None
     if "connection_string" not in st.session_state:
-        st.session_state["connection_string"] = st.secrets.blob.conn_string
+        st.session_state["connection_string"] = os.environ["conn_string_blob"]
         
     if "container_name" not in st.session_state:
         st.session_state["container_name"] = "fondos"
@@ -156,7 +156,7 @@ if not st.session_state.token:
         if st.button("Resumir"):
             endpoint_url = "https://cafpocfondos-project-v3.eastus.inference.ml.azure.com/score"
             pfc = PromptFlowClient(endpoint_url)
-            response = pfc.send_text(st.session_state["file"], "cafpocfondos-project-v3-1", st.secrets.resumir.api_key)
+            response = pfc.send_text(st.session_state["file"], "cafpocfondos-project-v3-1", os.environ["api_key_resumir"])
             json_response_raw = json.loads(response)
             json_response_prett = json_response_raw["output"]
             st.session_state["Resumen A"] = json_response_prett
