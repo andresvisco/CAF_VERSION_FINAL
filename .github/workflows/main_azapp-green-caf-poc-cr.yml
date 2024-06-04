@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'azapp-green-caf-poc-cr'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D5A34C35B4B24451A9EBCE8D46A3B1AC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED84287D979443DDA3DE3CC6D0596527 }}
