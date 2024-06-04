@@ -163,15 +163,15 @@ if not st.session_state.token:
             st.success(st.session_state["Resumen A"])
             # print(st.session_state["Resumen A"])
             st.header("Coincidencia de scoring del fondo analizado")
-            import matplotlib.pyplot as plt
+            # import matplotlib.pyplot as plt
         
             
-            explode=(0,0.1)
-            sizes = [85, 15]
-            fig1, ax1= plt.subplots()
-            ax1.pie(sizes, colors=['green', 'red'], explode=explode, autopct='%1.1f%%', shadow=True, startangle=90)
-            ax1.axis('equal')
-            st.pyplot(fig1)    
+            # explode=(0,0.1)
+            # sizes = [85, 15]
+            # fig1, ax1= plt.subplots()
+            # ax1.pie(sizes, colors=['green', 'red'], explode=explode, autopct='%1.1f%%', shadow=True, startangle=90)
+            # ax1.axis('equal')
+            # st.pyplot(fig1)    
             
         
         # if st.button("Guardar Resumen"):
