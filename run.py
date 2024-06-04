@@ -25,10 +25,10 @@ msal_app = msal.ConfidentialClientApplication(
     CLIENT_ID, authority=AUTHORITY, client_credential=CLIENT_SECRET)
 
 def get_auth_url():
-    return msal_app.get_authorization_request_url(SCOPE, redirect_uri=f"https://cafversionfinal-vhfxurfzjix57nxrsngsqw.streamlit.app/{REDIRECT_PATH}")
+    return msal_app.get_authorization_request_url(SCOPE, redirect_uri=f"https://azapp-green-caf-poc-cr.azurewebsites.net/{REDIRECT_PATH}")
 
 def get_token_from_code(auth_code):
-    return msal_app.acquire_token_by_authorization_code(auth_code, scopes=SCOPE, redirect_uri=f"https://cafversionfinal-vhfxurfzjix57nxrsngsqw.streamlit.app/{REDIRECT_PATH}")
+    return msal_app.acquire_token_by_authorization_code(auth_code, scopes=SCOPE, redirect_uri=f"https://azapp-green-caf-poc-cr.azurewebsites.net/{REDIRECT_PATH}")
 
 def get_user_profile(access_token):
     headers = {'Authorization': f'Bearer {access_token}'}
@@ -36,16 +36,16 @@ def get_user_profile(access_token):
     return response.json()
 
 def get_logout_url():
-    return f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/logout?post_logout_redirect_uri=https://cafversionfinalgit-cb8cein65fjssb9hafhnhv.streamlit.app/'
+    return f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/logout?post_logout_redirect_uri=https://azapp-green-caf-poc-cr.azurewebsites.net/'
 # Manejo de la autenticación en Streamlit
 if 'token' not in st.session_state:
     st.session_state["token"] = None
 
-if not st.session_state.token:
+if st.session_state.token:
     user_profile = get_user_profile(st.session_state["token"])
     
-    st.write(f"Bienvenido, Andrés Visco")#{user_profile.get('displayName')}")
-    st.write(f"Correo electrónico: andres.visco@gmail.com")#{user_profile.get('mail')}")
+    st.write(f"Bienvenido, {user_profile.get('displayName')}")
+    st.write(f"Correo electrónico: {user_profile.get('mail')}")
     if st.button("Cerrar sesión"):
         st.session_state["token"] = None
         logout_url = get_logout_url()
